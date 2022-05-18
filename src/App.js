@@ -3,6 +3,9 @@ import './App.css';
 
 
 
+const exerciseKey = '17a168f13cmsh19ba4052ab7fd23p11631ejsn3d191b376582';
+
+
 function App() {
   const [exerciseData, setExerciseData] = useState("");
   const [days, setDays] = useState(1);
@@ -10,39 +13,20 @@ function App() {
   function handleChange(e) {
     setExerciseData(e.target.value);
   }
-  const axios = require("axios");
 
+  
   const options = {
     method: 'GET',
-    url: 'https://exercisedb.p.rapidapi.com/exercises',
     headers: {
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
       'X-RapidAPI-Key': '17a168f13cmsh19ba4052ab7fd23p11631ejsn3d191b376582'
     }
   };
   
-  axios.request(options).then(function (response) {
-    console.log(response.data);
-  }).catch(function (error) {
-    console.error(error);
-  });
-
-  // const exerciseKey ='17a168f13cmsh19ba4052ab7fd23p11631ejsn3d191b376582'
-  
-  // function getExerciseData() {
-  //   fetch (
-  //     'https://exercisedb.p.rapidapi.com/exercises'
-  //     )
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     setExerciseData(data);
-  //   })
-  //   .catch(() => {
-  //     console.error("error");
-    
-  //   });
-
-  // }
+  fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${exerciseData}`, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
 
 
   return (
