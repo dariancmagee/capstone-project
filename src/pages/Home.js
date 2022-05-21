@@ -6,22 +6,22 @@ const exerciseKey = '17a168f13cmsh19ba4052ab7fd23p11631ejsn3d191b376582';
 
 
 function Home() {
-  const [exerciseData, setExerciseData] = useState("");
-  const [days, setDays] = useState(1);
+  const [bodyPart, setBodyPart] = useState("");
 
-  function handleChange(e) {
-    setExerciseData(e.target.value);
+  const changeBodyPart = (newBodyPart) => {
+    setBodyPart(newBodyPart)
   }
 
 
   const axios = require('axios');
 
+  function getExerciseData() {
   const options = {
     method: 'GET',
-    url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${exerciseData}`,
+    url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
     headers: {
-      'X-RapidAPI-Host': `exercisedb.p.rapidapi.com/${exerciseKey}`,
-      'X-RapidAPI-Key': '17a168f13cmsh19ba4052ab7fd23p11631ejsn3d191b376582'
+      'X-RapidAPI-Host': `exercisedb.p.rapidapi.com/`,
+      'X-RapidAPI-Key': `${exerciseKey}`
     }
   };
   axios.request(options).then(function (response) {
@@ -30,14 +30,18 @@ function Home() {
     console.error(error);
   });
   
-
+  }
 
   return (
     <div className="App">
         <h1>Fitness App</h1>
        
           <form className="controls">
-            <select value={exerciseData} onChange={handleChange}>
+            <select 
+              onChange={(event) => changeBodyPart(event.target.value)}
+              value={bodyPart}
+            >
+              <option value=""></option>
               <option value="back">Waist</option>
               <option value="cardio">Cardio</option>
               <option value="chest">Chest</option>
@@ -50,22 +54,7 @@ function Home() {
               <option value="waist">Waist</option>
             </select>
 
-            <select value={days} onChange={handleChange}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
-
-           
-
          </form>
-       
-        <button>Search</button>
      
     </div>
   );

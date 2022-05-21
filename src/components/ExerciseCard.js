@@ -11,22 +11,21 @@ export default function ImgMediaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="cute kitten"
+        height="160"
+        src="http://placekitten.com/200/400"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          Exercise explanation
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Video</Button>
+        <Button size="small">Variation</Button>
       </CardActions>
     </Card>
   );
